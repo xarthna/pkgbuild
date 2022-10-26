@@ -1,0 +1,23 @@
+# Maintainer: Ryan Charette <mail@xarthna.dev>
+
+pkgname=java-debug
+pkgver=0.41.0
+pkgrel=1
+pkgdesc="The debug server implementation for Java. It conforms to the debug protocol of Visual Studio Code (DAP, Debugger Adapter Protocol)."
+arch=('any')
+url="https://github.com/microsoft/java-debug"
+license=('EPL')
+# NOTICE: External Management Provides JRE Dependency
+depends=('jdtls')
+source=("https://github.com/microsoft/java-debug/archive/refs/tags/${pkgver}.tar.gz")
+sha512sums=('27ba8705799b3961f9f1e2e19f1697335e70b35938659199c5955908ca6d2b4503b79c0dbca52f41d55fabe61dec3aa29fa610793cdae9d3c3fdbbe4d7676db1')
+
+build() {
+    cd "${srcdir}/java-debug-${pkgver}"
+    ./mvnw clean install -DskipTests
+}
+
+package() {
+    :
+}
+

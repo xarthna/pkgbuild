@@ -1,0 +1,32 @@
+# Maintainer: Ryan Charette <mail@xarthna.dev>
+
+pkgname=jdtls
+pkgver=1.16.0
+pkgrel=1
+pkgdesc="Eclipse Java language server"
+arch=('any')
+url="https://projects.eclipse.org/projects/eclipse.jdt.ls"
+license=('EPL')
+# NOTICE: External Management Provides JRE Dependency
+depends=('python>=3.9')
+source=("https://download.eclipse.org/jdtls/milestones/${pkgver}/jdt-language-server-${pkgver}-202209291445.tar.gz")
+sha256sums=('bf16a0c3a7034260f646206c51fba14b3c10ef68cece23b7a3c681248f5c1f3a')
+
+package() {
+    local binroot="${HOME}/.local/bin"
+    local pkgroot="${binroot}/eclipse-jdtls"
+
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${binroot}"
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${pkgroot}"
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${pkgroot}/config_linux"
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${pkgroot}/features"
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${pkgroot}/plugins"
+    install -m 700 -o $USER -g $USER -d "${pkgdir}${pkgroot}/bin"
+
+    install -m 700 -o $USER -g $USER -D "${srcdir}/config_linux"/* "${pkgdir}${pkgroot}/config_linux"
+    install -m 700 -o $USER -g $USER -D "${srcdir}/features"/*  "${pkgdir}${pkgroot}/features"
+    install -m 700 -o $USER -g $USER -D "${srcdir}/plugins"/* "${pkgdir}${pkgroot}/plugins"
+    install -m 700 -o $USER -g $USER -D "${srcdir}/bin"/* "${pkgdir}${pkgroot}/bin"
+    ln -s --relative "${pkgdir}${pkgroot}/bin/jdtls" "${pkgdir}${binroot}/jdtls"
+    chown -h $USER:$USER "${pkgdir}${binroot}/jdtls"
+}
