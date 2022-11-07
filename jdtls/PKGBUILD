@@ -7,8 +7,7 @@ pkgdesc="Eclipse Java language server"
 arch=('any')
 url="https://projects.eclipse.org/projects/eclipse.jdt.ls"
 license=('EPL')
-# NOTICE: External Management Provides JRE Dependency
-depends=('python>=3.9')
+depends=('java-runtime>=17' 'python>=3.9')
 source=("https://download.eclipse.org/jdtls/milestones/${pkgver}/jdt-language-server-${pkgver}-202209291445.tar.gz")
 sha256sums=('bf16a0c3a7034260f646206c51fba14b3c10ef68cece23b7a3c681248f5c1f3a')
 

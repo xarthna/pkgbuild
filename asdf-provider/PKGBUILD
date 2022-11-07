@@ -1,0 +1,9 @@
+# Maintainer: Ryan Charette <mail@xarthna.dev>
+
+pkgname=asdf-provider
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Dummy package to signal to pacman/makepkg that common dependencies are provided, though not installed as packages from repos."
+arch=('any')
+depends=('asdf-vm')
+provides=('jre-openjdk=8' 'java-runtime=19' 'nodejs' 'ruby' 'rust' 'python' 'clojure' 'maven')

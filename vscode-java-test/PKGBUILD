@@ -7,8 +7,7 @@ pkgdesc="Run and debug Java test cases in Visual Studio Code."
 arch=('any')
 url="https://github.com/microsoft/vscode-java-test"
 license=('MIT')
-# NOTICE: External Management Provides JRE and Node Dependencies
-depends=('jdtls')
+depends=('java-runtime>=17' 'nodejs' 'jdtls')
 source=("https://github.com/microsoft/vscode-java-test/archive/refs/tags/${pkgver}.tar.gz")
 sha512sums=('31b24e6ca5269cb39af50600524f1d0d939ae1b1fa097b7a1c396542983de7384caf6ecfd971706daa19f72c6f97717342d7015ad21aef22e6daf86ddf6eef12')
 
@@ -21,7 +20,7 @@ build() {
 package() {
     local jardir="${pkgdir}${HOME}/.m2/repository/com/microsoft/java/vscode-java-test"
     local pkgsrc="${srcdir}/${pkgname}-${pkgver}"
-    install -dm755 $jardir 
+    install -dm755 $jardir
     install -Dm644 "${pkgsrc}/server"/* $jardir
     install -Dm644 "${pkgsrc}/LICENSE.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
